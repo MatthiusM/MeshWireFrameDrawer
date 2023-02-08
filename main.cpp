@@ -10,6 +10,10 @@ Model *model = NULL;
 const int width  = 800 ;
 const int height = 800;
 
+TGAColor RandomColour() { 
+    return TGAColor(rand() % 256, rand() % 256, rand() % 256, 255);;
+}
+
 template <typename t>
 void swap(t* a, t* b) {
     t temp = *b;
@@ -40,10 +44,10 @@ void line(int x0, int y0, int x1, int y1, TGAImage* image, TGAColor colour) {
         float y = y0 * (1 - t) + (y1 * t);
         
         if (steep) {
-            image->set(y, x, colour);
+            image->set(y, x, RandomColour());
         }
         else {
-            image->set(x, y, colour);
+            image->set(x, y, RandomColour());
         }
         
     }
@@ -54,6 +58,7 @@ void line(int x0, int y0, int x1, int y1, TGAImage* image, TGAColor colour) {
 
 
 int main(int argc, char** argv) {
+    srand(time(0));
     TGAImage image(width, height, TGAImage::RGB);
     
     if (2 == argc) {
