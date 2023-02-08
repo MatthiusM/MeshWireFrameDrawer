@@ -13,18 +13,19 @@ const int height = 800;
 template <typename t>
 void swap(t* a, t* b) {
     t temp = *b;
-    *a = *b;
+    *b = *a;
     *a = temp;
 }
 
 // Write the line method here
 //line (x0, y0, x1, y1, image, colour)
-void line(float x0, float y0, float x1, float y1, TGAImage* image, TGAColor colour) {
+void line(int x0, int y0, int x1, int y1, TGAImage* image, TGAColor colour) {
     bool steep = false;
-
+    
     if (abs(x0 - x1) < abs(y0 - y1)) {
         swap(&x0, &y0);
         swap(&x1, &y1);
+        steep = true;
     }
 
     if (x0 > x1) {
